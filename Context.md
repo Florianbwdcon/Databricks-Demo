@@ -1,209 +1,209 @@
-# Context: Storyline „Eine Frage, ein Weg“ im Schadenkontext
+# Context: Storyline "One Question, One Path" in a Claims Setting
 
-Diese Datei beschreibt die Storyline für die Genie-Demo im Bereich Schaden (Claims).
-Sie ist die gemeinsame Grundlage für Beispieldaten, Wissensseiten und den Ablauf am Stand.
-Aufbau und Kernbotschaft folgen der Vorlage `Storyline_Market_Stand_Genie_EN.pdf`.
+This file describes the storyline for the Genie demo in the claims area.
+It is the shared basis for the sample data, the knowledge pages and the flow at the stand.
+Structure and key message follow the template `Storyline_Market_Stand_Genie_EN.pdf`.
 
-Alle Daten, Namen und Dokumente sind frei erfunden.
+All data, names and documents are fictional.
 
-## Die Story in einem Satz
+## The story in one sentence
 
-Petra stellt Genie eine Frage zu Schäden. Genie holt die Zahlen aus dem **Data Management**
-(Tabellen im Databricks Catalog) und die Erklärung aus dem **Knowledge Hub** (Databricks Pages)
-und antwortet mit Quellen. Danach zeigen wir, was passiert, wenn im Hintergrund etwas nicht gepflegt ist.
+Petra asks Genie a question about claims. Genie pulls the numbers from **Data Management**
+(tables in the Databricks Catalog) and the explanation from the **Knowledge Hub** (Databricks Pages)
+and answers with sources. Then we show what happens when something behind the scenes is not maintained.
 
-> Kernbotschaft: KI ist nur so gut wie das, was dahinter gepflegt wird.
+> Key message: AI is only as good as what is maintained behind it.
 
-## Die Personen
+## The people
 
-| Wer | Rolle |
+| Who | Role |
 |---|---|
-| Petra | Teamleiterin Schaden bei der fiktiven „Nordlicht Versicherung“. Sie stellt die Frage. |
-| Genie | Der KI-Assistent in Databricks. Er beantwortet die Frage. |
+| Petra | Claims team lead at the fictional "Nordlicht Insurance". She asks the question. |
+| Genie | The AI assistant in Databricks. It answers the question. |
 
-## Die Frage
+## The question
 
-> „Wie hat sich die Bearbeitungsdauer von Leitungswasserschäden in den letzten 12 Monaten entwickelt, und warum?“
+> "How has the processing time for water damage claims developed over the last 12 months, and why?"
 
-Die Frage hat bewusst zwei Teile:
+The question deliberately has two parts:
 
-- **„Wie hat sie sich entwickelt?“** braucht Zahlen. Die liefert das Data Management.
-- **„Warum?“** braucht eine Erklärung. Die liefert der Knowledge Hub.
+- **"How has it developed?"** needs numbers. Data Management provides them.
+- **"Why?"** needs an explanation. The Knowledge Hub provides it.
 
-Warum dieses Beispiel: Ein Leitungswasserschaden (geplatztes Rohr, nasse Wand) ist für jeden
-sofort verständlich, und „Wie lange dauert es, bis ein Schaden erledigt ist?“ ist eine Frage,
-die Kunden wie Mitarbeitende kennen.
+Why this example: a water damage claim (burst pipe, wet wall) is immediately clear to everyone,
+and "How long does it take until a claim is settled?" is a question that customers and
+employees both know.
 
-## Die 4 Schritte
+## The 4 steps
 
-| Schritt | Was passiert | Wer hilft |
+| Step | What happens | Who helps |
 |---|---|---|
-| 1. Frage | Petra fragt Genie in normaler Sprache. | Genie |
-| 2. Zahlen holen | Genie findet die richtige Tabelle, prüft, ob Petra sie sehen darf, und berechnet die Bearbeitungsdauer pro Monat. | Data Management (Databricks Catalog) |
-| 3. Erklärung finden | Genie liest die Wissensseiten und findet, was den Verlauf erklärt: eine neue Regulierungsrichtlinie seit März. | Knowledge Hub (Databricks Pages) |
-| 4. Antwort | Genie zeigt Zahlen und Erklärung und nennt für beides die Quelle. | beide |
+| 1. Question | Petra asks Genie in plain language. | Genie |
+| 2. Fetch numbers | Genie finds the right table, checks whether Petra may see it, and calculates the processing time per month. | Data Management (Databricks Catalog) |
+| 3. Find explanation | Genie reads the knowledge pages and finds what explains the trend: a new claims handling guideline since March. | Knowledge Hub (Databricks Pages) |
+| 4. Answer | Genie shows numbers and explanation and names the source for both. | both |
 
-## Die gute Antwort
+## The good answer
 
-So soll Genie antworten, wenn alles gepflegt ist:
+This is how Genie should answer when everything is maintained:
 
-> Die durchschnittliche Bearbeitungsdauer von Leitungswasserschäden ist in den letzten 12 Monaten
-> von rund 18 Tagen auf rund 30 Tage gestiegen. Der Anstieg beginnt im März 2026.
+> The average processing time for water damage claims has risen from around 18 days to around
+> 30 days over the last 12 months. The increase starts in March 2026.
 >
-> Grund: Seit dem 1. März 2026 gilt eine neue Regulierungsrichtlinie. Bei Leitungswasserschäden
-> über 3.000 € muss vor der Auszahlung ein Gutachter den Schaden besichtigen. Das verlängert
-> die Bearbeitung dieser Schäden um etwa zwei bis drei Wochen.
+> Reason: a new claims handling guideline has been in force since 1 March 2026. For water damage
+> claims above €3,000, an assessor must inspect the damage before payout. This extends the
+> processing of these claims by about two to three weeks.
 >
-> Quellen: Tabelle `claims_demo.claims.claims` (Zahlen),
-> Seite „Regulierungsrichtlinie Leitungswasser“, Stand 01.03.2026 (Erklärung).
+> Sources: table `claims_demo.claims.claims` (numbers),
+> page "Claims Handling Guideline Water Damage", as of 1 March 2026 (explanation).
 
-## Data Management: Tabellen im Databricks Catalog
+## Data Management: tables in the Databricks Catalog
 
-Katalog `claims_demo`, Schema `claims`. Vier Tabellen, bewusst klein gehalten.
+Catalog `claims_demo`, schema `claims`. Four tables, deliberately kept small.
 
-### `customers` (Kunden)
+### `customers`
 
-| Spalte | Typ | Bedeutung |
+| Column | Type | Meaning |
 |---|---|---|
-| `customer_id` | STRING | Kundennummer (Schlüssel) |
-| `first_name` | STRING | Vorname (personenbezogen) |
-| `last_name` | STRING | Nachname (personenbezogen) |
-| `postal_code` | STRING | Postleitzahl |
-| `city` | STRING | Ort |
+| `customer_id` | STRING | Customer number (key) |
+| `first_name` | STRING | First name (personal data) |
+| `last_name` | STRING | Last name (personal data) |
+| `postal_code` | STRING | Postal code |
+| `city` | STRING | City |
 
-### `policies` (Verträge)
+### `policies`
 
-| Spalte | Typ | Bedeutung |
+| Column | Type | Meaning |
 |---|---|---|
-| `policy_id` | STRING | Vertragsnummer (Schlüssel) |
-| `customer_id` | STRING | Verweis auf `customers` |
-| `product` | STRING | Produkt, z. B. „Wohngebäude Komfort“, „Hausrat Plus“ |
-| `start_date` | DATE | Vertragsbeginn |
-| `end_date` | DATE | Vertragsende, leer bei laufenden Verträgen |
+| `policy_id` | STRING | Policy number (key) |
+| `customer_id` | STRING | Reference to `customers` |
+| `product` | STRING | Product, e.g. "Residential Building Comfort", "Home Contents Plus" |
+| `start_date` | DATE | Policy start |
+| `end_date` | DATE | Policy end, empty for active policies |
 
-### `claims` (Schäden)
+### `claims`
 
-Die zentrale Tabelle für die Frage.
+The central table for the question.
 
-| Spalte | Typ | Bedeutung |
+| Column | Type | Meaning |
 |---|---|---|
-| `claim_id` | STRING | Schadennummer (Schlüssel) |
-| `policy_id` | STRING | Verweis auf `policies` |
-| `damage_type` | STRING | Schadenart: „Leitungswasser“, „Sturm/Hagel“, „Feuer“, „Glasbruch“ |
-| `loss_date` | DATE | Schadentag |
-| `reported_date` | DATE | Meldedatum |
-| `closed_date` | DATE | Abschlussdatum, leer bei offenen Schäden |
-| `status` | STRING | „offen“, „abgeschlossen“, „abgelehnt“ |
-| `estimated_amount` | DECIMAL(10,2) | Geschätzte Schadenhöhe in Euro |
-| `assessor_required` | BOOLEAN | Gutachter nötig (ja/nein) |
+| `claim_id` | STRING | Claim number (key) |
+| `policy_id` | STRING | Reference to `policies` |
+| `damage_type` | STRING | Damage type: "Water damage", "Storm/Hail", "Fire", "Glass breakage" |
+| `loss_date` | DATE | Date of loss |
+| `reported_date` | DATE | Date the claim was reported |
+| `closed_date` | DATE | Date the claim was closed, empty for open claims |
+| `status` | STRING | "open", "closed", "rejected" |
+| `estimated_amount` | DECIMAL(10,2) | Estimated claim amount in euros |
+| `assessor_required` | BOOLEAN | Assessor needed (yes/no) |
 
-### `claim_payments` (Zahlungen)
+### `claim_payments`
 
-| Spalte | Typ | Bedeutung |
+| Column | Type | Meaning |
 |---|---|---|
-| `payment_id` | STRING | Zahlungsnummer (Schlüssel) |
-| `claim_id` | STRING | Verweis auf `claims` |
-| `payment_date` | DATE | Auszahlungsdatum |
-| `amount` | DECIMAL(10,2) | Ausgezahlter Betrag in Euro |
+| `payment_id` | STRING | Payment number (key) |
+| `claim_id` | STRING | Reference to `claims` |
+| `payment_date` | DATE | Payout date |
+| `amount` | DECIMAL(10,2) | Amount paid out in euros |
 
-### Beziehungen
+### Relationships
 
 `customers` 1:n `policies` 1:n `claims` 1:n `claim_payments`
 
-### Definition der Kennzahl
+### Definition of the metric
 
-**Bearbeitungsdauer** = Anzahl Tage zwischen `reported_date` und `closed_date`.
-Es zählen nur abgeschlossene Schäden. Ausgewertet wird der Durchschnitt pro Meldemonat.
+**Processing time** = number of days between `reported_date` and `closed_date`.
+Only closed claims count. The average is evaluated per month of reporting.
 
-Diese Definition steht zusätzlich als Tabellen- und Spaltenkommentar im Catalog und im Glossar
-des Knowledge Hub, damit Genie sie findet.
+This definition is also stored as a table and column comment in the Catalog and in the glossary
+of the Knowledge Hub, so that Genie finds it.
 
-### Zielwerte für die Beispieldaten
+### Target values for the sample data
 
-Die Beispieldaten für Leitungswasserschäden sollen diesen Verlauf ergeben:
+The sample data for water damage claims should produce this trend:
 
-| Meldemonat | Anzahl Schäden | Ø Bearbeitungsdauer (Tage) |
+| Month reported | Number of claims | Avg. processing time (days) |
 |---|---|---|
-| Okt 2025 | 38 | 18 |
+| Oct 2025 | 38 | 18 |
 | Nov 2025 | 41 | 17 |
-| Dez 2025 | 44 | 18 |
+| Dec 2025 | 44 | 18 |
 | Jan 2026 | 96 | 21 |
 | Feb 2026 | 52 | 19 |
-| Mär 2026 | 40 | 24 |
+| Mar 2026 | 40 | 24 |
 | Apr 2026 | 37 | 27 |
-| Mai 2026 | 39 | 29 |
+| May 2026 | 39 | 29 |
 | Jun 2026 | 36 | 30 |
 | Jul 2026 | 38 | 31 |
 | Aug 2026 | 35 | 30 |
 | Sep 2026 | 37 | 31 |
 
-Hinweise zu den Daten:
+Notes on the data:
 
-- Ab März 2026 haben Schäden mit `estimated_amount` über 3.000 € `assessor_required = true`
-  und dauern rund 38 Tage. Schäden ohne Gutachter dauern weiterhin rund 19 Tage.
-- Der Januar 2026 hat wegen einer Frostperiode mehr als doppelt so viele Schäden.
-  Das ist eine gute Anschlussfrage („Warum gab es im Januar so viele Schäden?“).
-- Die anderen Schadenarten bleiben über das Jahr unauffällig (zusammen etwa 1.000 Schäden).
-- Vereinfachung: Im guten Datensatz sind alle Schäden abgeschlossen.
-- Der Zeitraum ist auf eine Demo im Oktober 2026 ausgelegt. Bei einem späteren Termin
-  die Daten verschieben, damit „die letzten 12 Monate“ weiter passt.
+- From March 2026, claims with `estimated_amount` above €3,000 have `assessor_required = true`
+  and take around 38 days. Claims without an assessor still take around 19 days.
+- January 2026 has more than twice as many claims because of a frost period.
+  This makes a good follow-up question ("Why were there so many claims in January?").
+- The other damage types stay unremarkable over the year (about 1,000 claims in total).
+- Simplification: in the good data set all claims are closed.
+- The period is designed for a demo in October 2026. For a later date, shift the data
+  so that "the last 12 months" still fits.
 
-## Knowledge Hub: Seiten in Databricks Pages
+## Knowledge Hub: pages in Databricks Pages
 
-Jede Seite hat oben einen kleinen Kopf: **Titel, Stand (Datum), Verantwortliche Person, Gültig ab**.
-Genau diese Angaben braucht Genie, um eine Quelle sauber zu nennen.
+Every page has a small header at the top: **Title, As of (date), Owner, Valid from**.
+These are exactly the details Genie needs to name a source properly.
 
-| Seite | Inhalt | Rolle in der Story |
+| Page | Content | Role in the story |
 |---|---|---|
-| Regulierungsrichtlinie Leitungswasser | Seit 01.03.2026: Gutachterpflicht bei Schäden über 3.000 €. Vorher lag die Grenze bei 10.000 €. Wartezeit auf einen Gutachtertermin etwa zwei Wochen. | Liefert das „Warum“ |
-| Glossar Schaden | Erklärt Begriffe wie Bearbeitungsdauer, Meldedatum, Abschlussdatum, Schadenart. | Sorgt dafür, dass Genie die Kennzahl richtig berechnet |
-| Ereignisbericht Frost Januar 2026 | Frostperiode vom 8. bis 19. Januar 2026, viele geplatzte Rohre, vor allem im Norden. | Erklärt die Spitze im Januar (Anschlussfrage) |
-| Ablauf Schadenbearbeitung | Die Schritte von der Meldung bis zur Auszahlung in einfachen Worten. | Hintergrund für Besucher |
+| Claims Handling Guideline Water Damage | Since 1 March 2026: an assessor is mandatory for claims above €3,000. Before that the threshold was €10,000. Waiting time for an assessor appointment is about two weeks. | Provides the "why" |
+| Claims Glossary | Explains terms such as processing time, reported date, closed date, damage type. | Makes sure Genie calculates the metric correctly |
+| Event Report Frost January 2026 | Frost period from 8 to 19 January 2026, many burst pipes, mainly in the north. | Explains the peak in January (follow-up question) |
+| Claims Handling Process | The steps from reporting to payout in simple words. | Background for visitors |
 
-## Der Höhepunkt: „Was, wenn etwas fehlt?“
+## The highlight: "What if something is missing?"
 
-Dieselbe Frage wird noch einmal gestellt, aber diesmal ist eine Sache kaputt.
-Besucher wählen eine von drei Karten:
+The same question is asked again, but this time one thing is broken.
+Visitors pick one of three cards:
 
-| Fehlerfall | Beispiel | Wirkung auf Genies Antwort |
+| Failure case | Example | Effect on Genie's answer |
 |---|---|---|
-| Daten sind schlecht | Bei 15 % der Schäden fehlt das Abschlussdatum, vor allem bei den langen Fällen. | Genie nennt 24 statt 30 Tage. Die Zahl ist falsch, oder Genie warnt vor Lücken. |
-| Dokument ist veraltet | Die neue Richtlinie wurde nie abgelegt. Im Knowledge Hub liegt nur die alte Fassung von 2023. | Genie sieht den Anstieg, findet aber keine oder eine falsche Erklärung. |
-| Keine Berechtigung | Petra darf die Schadentabelle nicht sehen. | Genie lehnt sauber ab, statt zu raten. |
+| Data is poor | The closed date is missing for 15% of claims, mainly the long ones. | Genie reports 24 instead of 30 days. The number is wrong, or Genie warns about gaps. |
+| Document is outdated | The new guideline was never filed. The Knowledge Hub only contains the old version from 2023. | Genie sees the increase but finds no explanation, or a wrong one. |
+| No permission | Petra is not allowed to see the claims table. | Genie declines cleanly instead of guessing. |
 
-Besucher sehen sofort, wie die Antwort schlechter wird, und verstehen: Die Qualität kommt nicht
-aus der KI selbst, sondern aus den Daten und dem Wissen dahinter.
+Visitors immediately see the answer get worse and understand: quality does not come from the AI
+itself, but from the data and knowledge behind it.
 
-### Umsetzung der Fehlerfälle
+### Implementing the failure cases
 
-| Fehlerfall | Umsetzung in Databricks |
+| Failure case | Implementation in Databricks |
 |---|---|
-| Daten sind schlecht | Zweites Schema `claims_demo.claims_poor_quality` mit derselben Tabelle `claims`, aber ohne `closed_date` bei 15 % der Zeilen. |
-| Dokument ist veraltet | Zweiter Seitenbereich, in dem nur die alte Richtlinie (Stand 2023, Grenze 10.000 €) liegt. |
-| Keine Berechtigung | Zweite Gruppe ohne `SELECT`-Recht auf `claims_demo.claims.claims`. |
+| Data is poor | Second schema `claims_demo.claims_poor_quality` with the same table `claims`, but without `closed_date` in 15% of the rows. |
+| Document is outdated | Second page area that only contains the old guideline (as of 2023, threshold €10,000). |
+| No permission | Second group without `SELECT` permission on `claims_demo.claims.claims`. |
 
-## Ablauf am Stand (ca. 5 Minuten)
+## How it runs at the stand (approx. 5 minutes)
 
-| Block | Dauer | Inhalt |
+| Block | Duration | Content |
 |---|---|---|
-| Einstieg | 30 Sek. | „Früher hätte Petra drei Tage auf eine Excel-Auswertung gewartet. Heute fragt sie Genie.“ |
-| Durchlauf | 2 Min. | Die vier Schritte am Bildschirm, jeweils mit einem kurzen Hinweis, was im Hintergrund passiert. |
-| Fehlerfall | 2 Min. | Der Besucher wählt eine Karte und sieht die Wirkung. |
-| Mitnehmen | 30 Sek. | „Was kann ich morgen tun?“ Dokumente mit Datum und Verantwortlichem versehen, Datenfehler melden. |
+| Intro | 30 sec. | "In the past, Petra would have waited three days for an Excel report. Now she asks Genie." |
+| Walkthrough | 2 min. | The four steps on screen, each with a short note on what happens behind the scenes. |
+| Failure case | 2 min. | The visitor picks a card and sees the effect. |
+| Takeaway | 30 sec. | "What can I do tomorrow?" Add a date and an owner to documents, report data errors. |
 
-## Was wir brauchen
+## What we need
 
-- Katalog `claims_demo` mit den vier Tabellen und den Beispieldaten
-- Vier Seiten im Knowledge Hub (Databricks Pages)
-- Einen Genie Space mit der Frage und vier vorbereiteten Antworten
-  (gut, schlechte Daten, veraltetes Dokument, keine Berechtigung)
-- Drei Fehlerfall-Karten zum Anfassen oder Klicken
-- Poster mit den vier Schritten für Laufpublikum
+- Catalog `claims_demo` with the four tables and the sample data
+- Four pages in the Knowledge Hub (Databricks Pages)
+- A Genie space with the question and four prepared answers
+  (good, poor data, outdated document, no permission)
+- Three failure-case cards to touch or click
+- Poster with the four steps for passers-by
 
-## Für den Deep Dive (nur auf Nachfrage)
+## For the deep dive (on request only)
 
-- Glossar: Was genau heißt „Bearbeitungsdauer“?
-- Catalog und Lineage: Woher kommen die Zahlen?
-- Routing: Wann nutzt Genie Tabellen, wann Seiten?
-- Prüfung der erzeugten Abfrage und Plausibilitätschecks
-- Rollen, Berechtigungen und Zweckbindung bei Schadendaten (z. B. Kundennamen maskieren)
+- Glossary: what exactly does "processing time" mean?
+- Catalog and lineage: where do the numbers come from?
+- Routing: when does Genie use tables, when pages?
+- Checking the generated query and plausibility checks
+- Roles, permissions and purpose limitation for claims data (e.g. masking customer names)

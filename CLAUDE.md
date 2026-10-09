@@ -1,12 +1,17 @@
 # Databricks-Demo
 
-Beispieldaten und Storyline für eine Databricks-Demo mit Genie. Die Storyline steht in `Context.md`.
+Sample data and storyline for a Databricks demo using Genie. The storyline is in `Context.md`.
 
-## Git-Arbeitsweise
+## Project language
 
-- `dev` ist der Arbeitsbranch. Florian bleibt lokal auf `dev` ausgecheckt.
-- Ein fertig implementiertes Feature wird immer nach `dev` gemergt und nach `origin/dev` gepusht.
-- Direkt nach dem Push nach `origin/dev` holt Claude den Stand auch im lokalen Checkout nach (`git pull --ff-only` auf `dev`), damit lokal und GitHub gleich sind.
-- Wenn Claude isoliert in einem Worktree arbeitet, ist dessen Branch nur temporär: nach dem Merge in `dev` wird er nicht weiterverwendet und nicht als eigener Branch auf GitHub gepusht.
-- Nicht auf `master` pushen.
-- Die `.claude`-Ordner werden nicht eingecheckt (siehe `.gitignore`).
+- The project language is English. All files, documentation, table and column names, sample data values, code comments and commit messages are written in English.
+- Chat with Florian may be in German, but everything that ends up in the repository is English.
+
+## Git workflow
+
+- `dev` is the working branch. Florian keeps `dev` checked out locally.
+- A finished feature is always merged into `dev` and pushed to `origin/dev`.
+- Right after pushing to `origin/dev`, Claude also updates the local checkout (`git pull --ff-only` on `dev`) so that local and GitHub are in sync.
+- When Claude works isolated in a worktree, its branch is temporary: after the merge into `dev` it is not reused and not pushed to GitHub as a separate branch.
+- Do not push to `master`.
+- The `.claude` folders are not checked in (see `.gitignore`).
