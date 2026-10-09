@@ -140,11 +140,13 @@ The sample data for water damage claims should produce this trend:
 Notes on the data:
 
 - From March 2026, claims with `estimated_amount` above €3,000 have `assessor_required = true`
-  and take around 38 days. Claims without an assessor still take around 19 days.
+  and take around 36 days. Claims without an assessor still take around 18 days.
 - January 2026 has more than twice as many claims because of a frost period.
   This makes a good follow-up question ("Why were there so many claims in January?").
 - The other damage types stay unremarkable over the year (about 1,000 claims in total).
-- Simplification: in the good data set all claims are closed.
+- Simplification: in the good data set all claims are closed, so the claims reported
+  last have closed dates up to November 2026.
+- The tables and the sample data are built by the scripts in `setup/` (see `README.md`).
 - The period is designed for a demo in October 2026. For a later date, shift the data
   so that "the last 12 months" still fits.
 
