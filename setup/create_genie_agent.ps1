@@ -4,6 +4,7 @@
 #
 # Usage:   .\setup\create_genie_agent.ps1
 #          .\setup\create_genie_agent.ps1 -Title 'Claims Genie (poor data)' -ClaimsSchema claims_poor_quality
+#          .\setup\create_genie_agent.ps1 -Title 'Claims Genie (outdated document)' -KnowledgeSchema knowledge_outdated
 # Needs:   Databricks CLI, logged in (databricks auth login)
 
 param(
@@ -61,6 +62,7 @@ Style
 - Sentence 1 is about the numbers only. For a development over time it has this form: "<Metric> rose from <start value> in <first month> to <end value> in <last month>, with the lasting increase starting in <month>." A change is lasting when the number stays higher in the following months. Leave out a single month that is a little higher and then falls back. For a question about one month, sentence 1 gives the number of that month and the normal level.
 - Sentence 1 ends there when closed_claims_without_closed_date is 0 in all months. Only when it is above 0 in any month, sentence 1 continues with: ", but this average is not reliable and probably too low, because <lowest> to <highest> closed claims per month have no closed date."
 - Sentence 2 is about the reason only. It has this form: "Reason: Page "<title>", as of <date>, says that <what the page says>." Take it from the knowledge_hub_note of the month in which the lasting change starts, or of the month the question asks about. Use only that one page.
+- If there is no knowledge_hub_note for that month, sentence 2 is exactly: "Reason: The Knowledge Hub contains no explanation for this change." Do not take a reason from another month. The last line is then exactly: Sources: table <full table name> (numbers), no page found (explanation).
 - Never use the words "note", "notes", "attached", "rows" or "data quality" in the answer.
 - The last line of every answer is mandatory and has exactly this form: Sources: table <full table name> (numbers), page "<title>", as of <date> (explanation).
 - Use plain language. Round days to whole numbers.

@@ -74,3 +74,14 @@ The agent for the failure case "Data is poor" is the same script with the poor-q
 ```powershell
 .\setup\create_genie_agent.ps1 -Title 'Claims Genie (poor data)' -ClaimsSchema claims_poor_quality
 ```
+
+The failure case "Document is outdated" has its own Knowledge Hub. The folder `knowledge_outdated/`
+only contains the old guideline from 2023. Upload it to the schema `knowledge_outdated` and create
+the agent on it:
+
+```powershell
+.\setup\upload_knowledge.ps1 -Folder knowledge_outdated -Schema knowledge_outdated
+.\setup\create_genie_agent.ps1 -Title 'Claims Genie (outdated document)' -KnowledgeSchema knowledge_outdated
+```
+
+After a change to the instructions in `create_genie_agent.ps1`, run all three calls again.

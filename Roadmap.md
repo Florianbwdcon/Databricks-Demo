@@ -38,7 +38,7 @@ the material for the stand.
 Phase 1  Storyline and data       done
 Phase 2  Knowledge Hub            done
 Phase 3  Genie Agent              done, UI test open
-Phase 4  Failure cases            next, 1 of 3 done and tested
+Phase 4  Failure cases            2 of 3 done and tested
 Phase 5  Stand                    open
 Phase 6  Housekeeping             open
 ```
@@ -97,8 +97,11 @@ Done: "Data is poor". The Genie Agent "Claims Genie (poor data)" uses `claims_po
 It reports 21 to 26 days from March 2026 instead of 24 to 31 and warns that closed claims
 without a closed date make the average unreliable.
 
-- "Document is outdated": write a page with the old guideline (valid from 1 July 2023,
-  threshold €10,000), store it in a second schema as `knowledge_pages`, second Genie Agent on top
+Done: "Document is outdated". The folder `knowledge_outdated/` only holds the old guideline from
+2023, stored in the schema `claims_demo.knowledge_outdated`. The Genie Agent "Claims Genie
+(outdated document)" reports the same numbers as the good agent and says that the Knowledge Hub
+contains no explanation for the change.
+
 - "No permission": second group without `SELECT` on `claims_demo.claims.claims`
 - Test all three failure cases with the main question and note the answers
 

@@ -1,13 +1,16 @@
-# Uploads the Knowledge Hub pages from the folder knowledge/ to a volume in Databricks
+# Uploads the Knowledge Hub pages from a folder (default knowledge/) to a volume in Databricks
 # and rebuilds the table knowledge_pages and the view knowledge_by_month from them. Genie reads
 # the pages from there, because attaching a volume to a Genie Agent is not enabled in this workspace.
 # Creates the schema and the volume if they do not exist. Existing files are overwritten.
 #
 # Usage:   .\setup\upload_knowledge.ps1
 #          .\setup\upload_knowledge.ps1 -Catalog my_catalog -WarehouseName my-warehouse
+#          .\setup\upload_knowledge.ps1 -Folder knowledge_outdated -Schema knowledge_outdated
 # Needs:   Databricks CLI, logged in (databricks auth login)
 
 param(
+    # Folder in the repository with the Markdown pages
+    [string]$Folder = 'knowledge',
     [string]$Catalog = 'claims_demo',
     [string]$Schema = 'knowledge',
     [string]$Volume = 'pages',
@@ -51,7 +54,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 $target = "dbfs:/Volumes/$Catalog/$Schema/$Volume"
-$pages = Join-Path (Split-Path $PSScriptRoot -Parent) 'knowledge'
+$pages = Join-Path (Split-Path $PSScriptRoot -Parent) $Folder
 foreach ($file in Get-ChildItem -Path $pages -Filter '*.md' | Sort-Object Name) {
     Write-Host "Uploading $($file.Name)"
     databricks fs cp $file.FullName "$target/$($file.Name)" --overwrite
