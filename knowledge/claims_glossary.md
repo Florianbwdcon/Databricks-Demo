@@ -1,11 +1,11 @@
 # Claims Glossary
 
-| | |
-|---|---|
-| **Title** | Claims Glossary |
-| **As of** | 1 March 2026 |
-| **Owner** | Claims Data Office, Nordlicht Insurance |
-| **Valid from** | 1 January 2025 |
+|                |                                         |
+| -------------- | --------------------------------------- |
+| **Title**      | Claims Glossary                         |
+| **As of**      | 1 March 2026                            |
+| **Owner**      | Claims Data Office, Nordlicht Insurance |
+| **Valid from** | 1 January 2025                          |
 
 This glossary explains the terms used in the claims area of Nordlicht Insurance.
 The definitions apply to the tables in `claims_demo.claims`.

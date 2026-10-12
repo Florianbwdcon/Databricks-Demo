@@ -39,4 +39,11 @@ The folder `knowledge/` contains the pages of the Knowledge Hub as Markdown:
 | `claims_handling_process.md` | Claims Handling Process |
 
 Every page starts with a header: title, as of, owner, valid from.
-The pages are not uploaded to Databricks yet (see `TODO.md`).
+
+Upload the pages to the volume `claims_demo.knowledge.pages` (creates schema and volume if needed):
+
+```powershell
+.\setup\upload_knowledge.ps1
+```
+
+Re-running overwrites the files in the volume.

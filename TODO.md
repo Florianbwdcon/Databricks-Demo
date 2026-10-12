@@ -13,13 +13,15 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
 
 ## Knowledge Hub (pages in OKF)
 
-- [ ] Clarify where the Knowledge Hub lives in the Databricks workspace and how pages get there
+- [x] Clarify where the Knowledge Hub lives in the Databricks workspace and how pages get there
+      (volume `claims_demo.knowledge.pages`, filled by `setup/upload_knowledge.ps1`)
 - [x] Write the page "Claims Handling Guideline Water Damage" (as of 1 March 2026)
 - [x] Write the page "Claims Glossary"
 - [x] Write the page "Event Report Frost January 2026"
 - [x] Write the page "Claims Handling Process"
 - [x] Give every page the header: title, as of, owner, valid from
-- [ ] Upload the pages to the Knowledge Hub
+- [x] Upload the pages to the Knowledge Hub
+- [ ] Create a Knowledge Assistant on the volume `claims_demo.knowledge.pages`
 
 ## Genie
 
