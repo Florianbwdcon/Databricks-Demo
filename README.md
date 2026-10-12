@@ -46,7 +46,19 @@ Upload the pages to the volume `claims_demo.knowledge.pages` (creates schema and
 .\setup\upload_knowledge.ps1
 ```
 
-The volume is attached to the Genie Agent as a source, so that Genie reads the pages directly
-(Beta feature "Analyze Files in Volumes with Genie Agents", turned on on the Previews page).
-
 Re-running overwrites the files in the volume.
+
+## Genie Agent
+
+Create the Genie Agent "Claims Genie" with the four claims tables, the instructions and the
+definition of processing time:
+
+```powershell
+.\setup\create_genie_agent.ps1
+```
+
+Re-running updates the agent. The script does not attach the Knowledge Hub. Do this once by hand:
+
+1. Turn on the Beta feature "Analyze Files in Volumes with Genie Agents" on the Previews page
+   (workspace admin).
+2. Open the agent, go to **Sources**, click **Add** and select the volume `claims_demo.knowledge.pages`.

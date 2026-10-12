@@ -75,15 +75,16 @@ Phase 6  Housekeeping             open
 
 ### Phase 3: Genie space (next)
 
+Done: the Genie Agent "Claims Genie" exists with the four claims tables and the instructions
+(`setup/create_genie_agent.ps1`). It answers the numbers part of the main question correctly
+and names the table as the source. The "why" is still missing because the volume is not attached.
+
 1. Turn on the preview "Analyze Files in Volumes with Genie Agents" on the Previews page
-2. Create a **Genie Agent** with the four claims tables
-3. Attach the volume `claims_demo.knowledge.pages` under Sources and check that Genie reads
+2. Attach the volume `claims_demo.knowledge.pages` under Sources and check that Genie reads
    the Markdown files
-4. Add instructions: the definition of processing time, and that the explanation is named
-   with page title and "as of" date as the source
-5. Test the main question and compare with "The good answer" in `Context.md`
-6. Test the follow-up question: "Why were there so many claims in January?"
-7. Check that a source is named for the numbers and for the explanation
+3. Test the main question and compare with "The good answer" in `Context.md`
+4. Test the follow-up question: "Why were there so many claims in January?"
+5. Check that a source is named for the numbers and for the explanation
 
 ### Phase 4: Failure cases
 

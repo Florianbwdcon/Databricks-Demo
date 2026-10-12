@@ -27,11 +27,12 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
 ## Genie
 
 - [ ] Turn on the preview "Analyze Files in Volumes with Genie Agents" (Previews page, workspace admin)
-- [ ] Create the Genie Agent with the four claims tables
+- [x] Create the Genie Agent "Claims Genie" with the four claims tables (`setup/create_genie_agent.ps1`)
+- [x] Add instructions and the definition of "processing time"
+- [x] Instruct Genie to name the page title and "as of" date as the source of the explanation
+- [x] Test the numbers of the main question (18 days in Oct 2025 to 31 days in Sep 2026, source named)
 - [ ] Attach the volume `claims_demo.knowledge.pages` under Sources, with a description of the pages
 - [ ] Check that Genie reads the Markdown files (the documentation lists PDF, Word, slides and images)
-- [ ] Add instructions and the definition of "processing time"
-- [ ] Instruct Genie to name the page title and "as of" date as the source of the explanation
 - [ ] Test the main question and compare with "The good answer" in `Context.md`
 - [ ] Test the follow-up question "Why were there so many claims in January?"
 - [ ] Check that Genie names a source for the numbers and for the explanation
