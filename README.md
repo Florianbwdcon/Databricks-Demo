@@ -68,3 +68,9 @@ example queries for the two demo questions:
 ```
 
 Re-running updates the agent.
+
+The agent for the failure case "Data is poor" is the same script with the poor-quality claims table:
+
+```powershell
+.\setup\create_genie_agent.ps1 -Title 'Claims Genie (poor data)' -ClaimsSchema claims_poor_quality
+```

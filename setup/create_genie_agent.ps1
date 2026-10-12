@@ -116,7 +116,9 @@ $tables = @(
     "$Catalog.claims.claim_payments",
     $pagesTable,
     $monthView
-) | Sort-Object
+)
+# Genie expects the tables sorted by code point, which Sort-Object does not do
+[Array]::Sort($tables, [StringComparer]::Ordinal)
 
 $space = [ordered]@{
     version      = 2

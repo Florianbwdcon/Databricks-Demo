@@ -38,7 +38,7 @@ the material for the stand.
 Phase 1  Storyline and data       done
 Phase 2  Knowledge Hub            done
 Phase 3  Genie Agent              done, UI test open
-Phase 4  Failure cases            next, 1 of 3 done
+Phase 4  Failure cases            next, 1 of 3 done and tested
 Phase 5  Stand                    open
 Phase 6  Housekeeping             open
 ```
@@ -92,6 +92,10 @@ the month in which it took effect, and Genie joins it with the monthly numbers.
 Open: test both questions in the Genie UI and check how table and answer look on screen.
 
 ### Phase 4: Failure cases
+
+Done: "Data is poor". The Genie Agent "Claims Genie (poor data)" uses `claims_poor_quality.claims`.
+It reports 21 to 26 days from March 2026 instead of 24 to 31 and warns that closed claims
+without a closed date make the average unreliable.
 
 - "Document is outdated": write a page with the old guideline (valid from 1 July 2023,
   threshold €10,000), store it in a second schema as `knowledge_pages`, second Genie Agent on top
