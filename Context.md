@@ -155,6 +155,12 @@ Notes on the data:
 Every page has a small header at the top: **Title, As of (date), Owner, Valid from**.
 These are exactly the details Genie needs to name a source properly.
 
+How it is built: the pages are Markdown files in `knowledge/`. They are uploaded to the volume
+`claims_demo.knowledge.pages` and also stored as one row per page in the table
+`claims_demo.knowledge.knowledge_pages`, because Genie only reads tables. The Agent Bricks
+features (Knowledge Assistant, Supervisor Agent) are not enabled for this Databricks account,
+so Genie reads the explanation from this table.
+
 | Page | Content | Role in the story |
 |---|---|---|
 | Claims Handling Guideline Water Damage | Since 1 March 2026: an assessor is mandatory for claims above €3,000. Before that the threshold was €10,000. Waiting time for an assessor appointment is about two weeks. | Provides the "why" |
@@ -181,7 +187,7 @@ itself, but from the data and knowledge behind it.
 | Failure case | Implementation in Databricks |
 |---|---|
 | Data is poor | Second schema `claims_demo.claims_poor_quality` with the same table `claims`, but without `closed_date` in 15% of the rows. |
-| Document is outdated | Second page area that only contains the old guideline (as of 2023, threshold €10,000). |
+| Document is outdated | Second schema with a table `knowledge_pages` that only contains the old guideline (as of 2023, threshold €10,000), used by a second Genie space. |
 | No permission | Second group without `SELECT` permission on `claims_demo.claims.claims`. |
 
 ## How it runs at the stand (approx. 5 minutes)

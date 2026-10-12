@@ -40,10 +40,15 @@ The folder `knowledge/` contains the pages of the Knowledge Hub as Markdown:
 
 Every page starts with a header: title, as of, owner, valid from.
 
-Upload the pages to the volume `claims_demo.knowledge.pages` (creates schema and volume if needed):
+Upload the pages to the volume `claims_demo.knowledge.pages` (creates schema and volume if needed)
+and rebuild the table `claims_demo.knowledge.knowledge_pages` from them:
 
 ```powershell
 .\setup\upload_knowledge.ps1
 ```
 
-Re-running overwrites the files in the volume.
+The table has one row per page with the header fields (`title`, `as_of`, `owner`, `valid_from`)
+and the full text (`content`). Genie reads the explanation from this table, because Genie only
+reads tables and the Agent Bricks features are not enabled for this Databricks account.
+
+Re-running overwrites the files in the volume and rebuilds the table.

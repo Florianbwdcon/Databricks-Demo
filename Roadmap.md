@@ -17,23 +17,26 @@ pages, and the answer names the source for both. After that we show three failur
 |---|---|---|---|
 | Tables | provide the numbers | `claims_demo.claims` | done |
 | Poor-quality copy | failure case "Data is poor" | `claims_demo.claims_poor_quality` | done |
-| Knowledge pages | provide the "why" | volume `claims_demo.knowledge.pages` | done |
-| Knowledge Assistant | searches the knowledge pages | Agents | open |
-| Genie Agent | queries the tables | Agents / Genie space | open |
-| Supervisor Agent | connects both, this is "Genie" at the stand | Agents | open |
+| Knowledge pages | provide the "why" | volume `claims_demo.knowledge.pages` and table `claims_demo.knowledge.knowledge_pages` | done |
+| Genie space | queries the claims tables and reads the knowledge pages | Genie | open |
 
 Workspace: sandbox `adb-7405618085597765` (CLI profile `Florian`).
+
+The original plan was a Knowledge Assistant for the pages and a Supervisor Agent that connects
+it with Genie. Both are blocked for this Databricks account ("not available, please contact
+sales"), in the UI and in the API. Instead the pages are stored as a table and Genie reads
+the explanation from there.
 
 ## Where we are
 
 The data side and the knowledge side are finished and live in Databricks.
-Everything that turns them into an answer is still missing: the three agents, two of the
+Everything that turns them into an answer is still missing: the Genie space, two of the
 three failure cases and the material for the stand.
 
 ```
 Phase 1  Storyline and data       done
 Phase 2  Knowledge Hub            done
-Phase 3  Agents                   next
+Phase 3  Genie space              next
 Phase 4  Failure cases            1 of 3 done
 Phase 5  Stand                    open
 Phase 6  Housekeeping             open
@@ -60,7 +63,8 @@ Phase 6  Housekeeping             open
   - Event Report Frost January 2026 (explains the peak in January)
   - Claims Handling Process (background)
 - Numbers in the pages checked against the sample data
-- Pages uploaded to the volume, repeatable through `setup/upload_knowledge.ps1`
+- Pages uploaded to the volume and stored as the table `claims_demo.knowledge.knowledge_pages`
+  (one row per page), repeatable through `setup/upload_knowledge.ps1`
 
 ### Around it
 
@@ -70,21 +74,19 @@ Phase 6  Housekeeping             open
 
 ## What is left to do
 
-### Phase 3: Agents (next)
+### Phase 3: Genie space (next)
 
-1. Create a **Knowledge Assistant** on the volume `/Volumes/claims_demo/knowledge/pages/`
-   and test it with "Why have water damage claims taken longer since March?"
-2. Create a **Genie space** with the four tables, add instructions and the definition
-   of processing time
-3. Create a **Supervisor Agent** that connects Genie and the Knowledge Assistant
-4. Test the main question and compare with "The good answer" in `Context.md`
-5. Test the follow-up question: "Why were there so many claims in January?"
-6. Check that a source is named for the numbers and for the explanation
+1. Create a **Genie space** with the four claims tables and `knowledge.knowledge_pages`
+2. Add instructions: the definition of processing time, and that the explanation comes from
+   `knowledge_pages` with title and "as of" date as the source
+3. Test the main question and compare with "The good answer" in `Context.md`
+4. Test the follow-up question: "Why were there so many claims in January?"
+5. Check that a source is named for the numbers and for the explanation
 
 ### Phase 4: Failure cases
 
 - "Document is outdated": write a page with the old guideline (valid from 1 July 2023,
-  threshold €10,000), put it in a second volume, second Knowledge Assistant on top
+  threshold €10,000), store it in a second schema as `knowledge_pages`, second Genie space on top
 - "No permission": second group without `SELECT` on `claims_demo.claims.claims`
 - Test all three failure cases with the main question and note the answers
 

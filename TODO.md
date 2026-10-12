@@ -21,20 +21,22 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
 - [x] Write the page "Claims Handling Process"
 - [x] Give every page the header: title, as of, owner, valid from
 - [x] Upload the pages to the Knowledge Hub
-- [ ] Create a Knowledge Assistant on the volume `claims_demo.knowledge.pages`
+- [x] Store the pages as the table `claims_demo.knowledge.knowledge_pages` for Genie
+      (Knowledge Assistant and Supervisor Agent are not enabled for this account: "contact sales")
 
 ## Genie
 
-- [ ] Create the Genie space with the four tables
+- [ ] Create the Genie space with the four claims tables and `knowledge.knowledge_pages`
 - [ ] Add instructions and the definition of "processing time"
-- [ ] Connect the Knowledge Hub pages so that Genie can find the explanation
+- [ ] Instruct Genie to read the explanation from `knowledge_pages` and to name title and "as of" date as the source
 - [ ] Test the main question and compare with "The good answer" in `Context.md`
 - [ ] Test the follow-up question "Why were there so many claims in January?"
 - [ ] Check that Genie names a source for the numbers and for the explanation
 
 ## Remaining failure cases
 
-- [ ] "Document is outdated": second page area with only the old guideline (as of 2023, threshold 10,000 euros)
+- [ ] "Document is outdated": second schema with a `knowledge_pages` table that only holds the old guideline
+      (valid from 1 July 2023, threshold 10,000 euros) and a second Genie space on it
 - [ ] "No permission": second group without `SELECT` permission on `claims_demo.claims.claims`
 - [ ] Test all three failure cases with the main question and note Genie's answers
 
