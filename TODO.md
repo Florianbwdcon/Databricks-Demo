@@ -37,7 +37,10 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
 - [x] Test the main question: 17-18 days at the end of 2025 to 30-31 days in summer 2026, increase from
       March 2026 explained with the guideline, sources named (tested through the API on 12 October 2026)
 - [x] Test the follow-up question "Why were there so many claims in January?" (96 water damage claims, frost report)
-- [ ] Test both questions in the Genie UI and check how table and answer look on screen
+- [x] Test the main question in the Genie UI (Agent mode, by Florian on 12 October 2026): correct, but long
+- [x] Shorten the answer: at most three sentences plus sources, main reason first
+- [ ] Test both questions again in the Genie UI with the short style, in the mode used at the stand
+- [ ] The line "Sources:" is sometimes missing in the answer to the follow-up question
 - [x] Check that Genie names a source for the numbers and for the explanation
 
 ## Remaining failure cases

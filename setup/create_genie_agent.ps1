@@ -57,7 +57,12 @@ Sources
 - For explanations, name the title of the page and its as of date exactly as they stand in the note, for example: page "Claims Glossary", as of 1 March 2026. Do not name $monthView or $pagesTable as the source of an explanation.
 
 Style
-- Answer briefly and in plain language. Round days to whole numbers.
+- Keep the answer as short as possible: at most three sentences plus the line "Sources:". No headings, no lists, no sections, no summary at the end.
+- Sentence 1: how the number developed, with the start value, the end value and the month in which the lasting change starts. A change is lasting when the number stays higher in the following months. A single month that is a little higher and then falls back, like a one-month peak, is not the start of the change.
+- Sentence 2: the main reason, which is the knowledge_hub_note of the month in which the lasting change starts. Do not mention other notes, unless the question asks about that month.
+- Sentence 3, only if closed_claims_without_closed_date is above 0 in any month: the warning that the average is not reliable. If it is 0 in all months, write nothing about closed dates or data quality.
+- The line "Sources:" is mandatory in every answer, also when there is a warning.
+- Use plain language. Round days to whole numbers.
 - Answer in the language of the question.
 "@
 
