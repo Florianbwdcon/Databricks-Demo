@@ -161,8 +161,7 @@ How it is built: the pages are Markdown files in `knowledge/`. They are uploaded
 on the Previews page). Genie then reads the pages directly from the volume.
 
 The Agent Bricks features (Knowledge Assistant, Supervisor Agent) are not enabled for this
-Databricks account. As a fallback, the pages are also stored as one row per page in the table
-`claims_demo.knowledge.knowledge_pages`, in case reading from the volume does not work well enough.
+Databricks account, so they are not part of the demo.
 
 | Page | Content | Role in the story |
 |---|---|---|

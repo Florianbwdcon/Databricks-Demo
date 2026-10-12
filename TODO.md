@@ -21,8 +21,8 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
 - [x] Write the page "Claims Handling Process"
 - [x] Give every page the header: title, as of, owner, valid from
 - [x] Upload the pages to the Knowledge Hub
-- [x] Store the pages as the table `claims_demo.knowledge.knowledge_pages` as a fallback
-      (Knowledge Assistant and Supervisor Agent are not enabled for this account: "contact sales")
+- Knowledge Assistant and Supervisor Agent are not enabled for this account ("contact sales"),
+  so Genie reads the pages directly from the volume
 
 ## Genie
 
@@ -32,7 +32,6 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
 - [ ] Check that Genie reads the Markdown files (the documentation lists PDF, Word, slides and images)
 - [ ] Add instructions and the definition of "processing time"
 - [ ] Instruct Genie to name the page title and "as of" date as the source of the explanation
-- [ ] Drop the fallback table `knowledge_pages` once reading from the volume works
 - [ ] Test the main question and compare with "The good answer" in `Context.md`
 - [ ] Test the follow-up question "Why were there so many claims in January?"
 - [ ] Check that Genie names a source for the numbers and for the explanation

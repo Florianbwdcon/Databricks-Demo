@@ -40,8 +40,7 @@ The folder `knowledge/` contains the pages of the Knowledge Hub as Markdown:
 
 Every page starts with a header: title, as of, owner, valid from.
 
-Upload the pages to the volume `claims_demo.knowledge.pages` (creates schema and volume if needed)
-and rebuild the table `claims_demo.knowledge.knowledge_pages` from them:
+Upload the pages to the volume `claims_demo.knowledge.pages` (creates schema and volume if needed):
 
 ```powershell
 .\setup\upload_knowledge.ps1
@@ -50,8 +49,4 @@ and rebuild the table `claims_demo.knowledge.knowledge_pages` from them:
 The volume is attached to the Genie Agent as a source, so that Genie reads the pages directly
 (Beta feature "Analyze Files in Volumes with Genie Agents", turned on on the Previews page).
 
-The table is a fallback in case reading from the volume does not work well enough. It has one
-row per page with the header fields (`title`, `as_of`, `owner`, `valid_from`) and the full
-text (`content`).
-
-Re-running overwrites the files in the volume and rebuilds the table.
+Re-running overwrites the files in the volume.

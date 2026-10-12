@@ -18,7 +18,6 @@ pages, and the answer names the source for both. After that we show three failur
 | Tables | provide the numbers | `claims_demo.claims` | done |
 | Poor-quality copy | failure case "Data is poor" | `claims_demo.claims_poor_quality` | done |
 | Knowledge pages | provide the "why" | volume `claims_demo.knowledge.pages` | done |
-| Fallback table | the same pages as rows, in case the volume does not work well enough | `claims_demo.knowledge.knowledge_pages` | done |
 | Genie Agent | queries the claims tables and reads the pages from the volume | Genie | open |
 
 Workspace: sandbox `adb-7405618085597765` (CLI profile `Florian`).
@@ -64,8 +63,7 @@ Phase 6  Housekeeping             open
   - Event Report Frost January 2026 (explains the peak in January)
   - Claims Handling Process (background)
 - Numbers in the pages checked against the sample data
-- Pages uploaded to the volume and stored as the table `claims_demo.knowledge.knowledge_pages`
-  (one row per page), repeatable through `setup/upload_knowledge.ps1`
+- Pages uploaded to the volume, repeatable through `setup/upload_knowledge.ps1`
 
 ### Around it
 
@@ -86,7 +84,6 @@ Phase 6  Housekeeping             open
 5. Test the main question and compare with "The good answer" in `Context.md`
 6. Test the follow-up question: "Why were there so many claims in January?"
 7. Check that a source is named for the numbers and for the explanation
-8. Drop the fallback table once reading from the volume works
 
 ### Phase 4: Failure cases
 
