@@ -1,2 +1,7 @@
 # Claude Code: do not push local folders (settings, worktrees)
 .claude/
+
+.databricks
+
+# German copy of Roadmap.md, local only (the repository is English)
+Roadmap.de.md
