@@ -1,6 +1,6 @@
 # Creates the Genie Agent (Genie space) of the claims demo with the four claims tables,
-# the instructions and the definition of processing time. Re-running updates the agent.
-# The Knowledge Hub volume is attached by hand under Sources (see README.md).
+# the Knowledge Hub table, the instructions and the definition of processing time.
+# Re-running updates the agent. Run deploy.ps1 and upload_knowledge.ps1 first.
 #
 # Usage:   .\setup\create_genie_agent.ps1
 #          .\setup\create_genie_agent.ps1 -Title 'Claims Genie (poor data)' -ClaimsSchema claims_poor_quality
@@ -11,6 +11,8 @@ param(
     [string]$Catalog = 'claims_demo',
     # Schema of the table claims. The other three tables always come from the schema claims.
     [string]$ClaimsSchema = 'claims',
+    # Schema of the table knowledge_pages with the pages of the Knowledge Hub.
+    [string]$KnowledgeSchema = 'knowledge',
     [string]$WarehouseName = 'claims-demo-wh'
 )
 
@@ -24,6 +26,7 @@ function New-Id([string]$Text) {
 }
 
 $claimsTable = "$Catalog.$ClaimsSchema.claims"
+$pagesTable = "$Catalog.$KnowledgeSchema.knowledge_pages"
 
 $description = 'Answers questions about claims at the fictional Nordlicht Insurance: numbers from the claims tables, explanations from the pages of the Knowledge Hub. All data is fictional.'
 
@@ -40,14 +43,15 @@ Time periods
 - "The last 12 months" means the last 12 complete calendar months by reported_date. Leave out the current month.
 
 Numbers and explanations
-- Numbers come from the tables. Explanations ("why") come from the pages of the Knowledge Hub.
-- When a question asks why something changed, first calculate the numbers, then look for the explanation in the pages of the Knowledge Hub.
-- If the pages do not explain it, say that you found no explanation. Do not guess.
+- Numbers come from the claims tables. Explanations ("why") come from the pages of the Knowledge Hub.
+- The pages of the Knowledge Hub are the rows of the table ${pagesTable}: one row per page, with the full text in the column content. The table is small, so read all rows with title, as_of, valid_from and content.
+- When a question asks why something changed, calculate the numbers from the claims tables and read the pages in $pagesTable to find the explanation. Never join the claims tables with $pagesTable. Compare the dates in the pages (valid from, events) with the month in which the numbers change.
+- Only use what the pages say. If the pages do not explain it, say that you found no explanation. Do not guess.
 
 Sources
 - End every answer with a line "Sources:".
 - For numbers, name the table, for example $claimsTable.
-- For explanations, name the title of the page and its "As of" date from the header of the page.
+- For explanations, name the title of the page and its as_of date, for example: page "Claims Glossary", as of 1 March 2026. Do not name the table $pagesTable as the source of an explanation.
 
 Style
 - Answer briefly and in plain language. Round days to whole numbers.
@@ -77,7 +81,8 @@ $tables = @(
     $claimsTable,
     "$Catalog.claims.customers",
     "$Catalog.claims.policies",
-    "$Catalog.claims.claim_payments"
+    "$Catalog.claims.claim_payments",
+    $pagesTable
 ) | Sort-Object
 
 $space = [ordered]@{

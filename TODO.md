@@ -21,25 +21,29 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
 - [x] Write the page "Claims Handling Process"
 - [x] Give every page the header: title, as of, owner, valid from
 - [x] Upload the pages to the Knowledge Hub
-- Knowledge Assistant and Supervisor Agent are not enabled for this account ("contact sales"),
-  so Genie reads the pages directly from the volume
+- [x] Store the pages as the table `claims_demo.knowledge.knowledge_pages` for Genie
+- Blocked in this workspace: Knowledge Assistant and Supervisor Agent ("contact sales"), and
+  attaching the volume to the Genie Agent (`VOLUME_INDEX_FEATURE_PREVIEW_NOT_ENABLED`)
 
 ## Genie
 
-- [ ] Turn on the preview "Analyze Files in Volumes with Genie Agents" (Previews page, workspace admin)
-- [x] Create the Genie Agent "Claims Genie" with the four claims tables (`setup/create_genie_agent.ps1`)
+- [x] Create the Genie Agent "Claims Genie" with the four claims tables and `knowledge_pages`
+      (`setup/create_genie_agent.ps1`)
 - [x] Add instructions and the definition of "processing time"
 - [x] Instruct Genie to name the page title and "as of" date as the source of the explanation
 - [x] Test the numbers of the main question (18 days in Oct 2025 to 31 days in Sep 2026, source named)
-- [ ] Attach the volume `claims_demo.knowledge.pages` under Sources, with a description of the pages
-- [ ] Check that Genie reads the Markdown files (the documentation lists PDF, Word, slides and images)
+- [ ] Get a usable "why" out of Genie. Tested in chat mode through the API on 12 October 2026, none worked:
+  - main question in one go: Genie joins months and pages and explains with the wrong page
+  - numbers and all pages in one result row: Genie runs the query but writes no answer
+  - question about the pages only: Genie reads the first pages and misses the guideline
+  - still to try: Agent mode in the Genie UI, or pages split into short sections
 - [ ] Test the main question and compare with "The good answer" in `Context.md`
 - [ ] Test the follow-up question "Why were there so many claims in January?"
 - [ ] Check that Genie names a source for the numbers and for the explanation
 
 ## Remaining failure cases
 
-- [ ] "Document is outdated": second volume that only holds the old guideline
+- [ ] "Document is outdated": second schema with a `knowledge_pages` table that only holds the old guideline
       (valid from 1 July 2023, threshold 10,000 euros) and a second Genie Agent on it
 - [ ] "No permission": second group without `SELECT` permission on `claims_demo.claims.claims`
 - [ ] Test all three failure cases with the main question and note Genie's answers

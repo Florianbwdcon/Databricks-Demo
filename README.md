@@ -40,25 +40,26 @@ The folder `knowledge/` contains the pages of the Knowledge Hub as Markdown:
 
 Every page starts with a header: title, as of, owner, valid from.
 
-Upload the pages to the volume `claims_demo.knowledge.pages` (creates schema and volume if needed):
+Upload the pages to the volume `claims_demo.knowledge.pages` (creates schema and volume if needed)
+and rebuild the table `claims_demo.knowledge.knowledge_pages` from them:
 
 ```powershell
 .\setup\upload_knowledge.ps1
 ```
 
-Re-running overwrites the files in the volume.
+The table has one row per page with the header fields (`title`, `as_of`, `owner`, `valid_from`)
+and the full text (`content`). Genie reads the pages from this table, because attaching a volume
+to a Genie Agent is not enabled in this workspace (`VOLUME_INDEX_FEATURE_PREVIEW_NOT_ENABLED`).
+
+Re-running overwrites the files in the volume and rebuilds the table.
 
 ## Genie Agent
 
-Create the Genie Agent "Claims Genie" with the four claims tables, the instructions and the
-definition of processing time:
+Create the Genie Agent "Claims Genie" with the four claims tables, the table `knowledge_pages`,
+the instructions and the definition of processing time:
 
 ```powershell
 .\setup\create_genie_agent.ps1
 ```
 
-Re-running updates the agent. The script does not attach the Knowledge Hub. Do this once by hand:
-
-1. Turn on the Beta feature "Analyze Files in Volumes with Genie Agents" on the Previews page
-   (workspace admin).
-2. Open the agent, go to **Sources**, click **Add** and select the volume `claims_demo.knowledge.pages`.
+Re-running updates the agent.

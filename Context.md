@@ -156,12 +156,15 @@ Every page has a small header at the top: **Title, As of (date), Owner, Valid fr
 These are exactly the details Genie needs to name a source properly.
 
 How it is built: the pages are Markdown files in `knowledge/`. They are uploaded to the volume
-`claims_demo.knowledge.pages`, and the volume is attached to the Genie Agent as a source
-(Beta feature "Analyze Files in Volumes with Genie Agents", turned on by a workspace admin
-on the Previews page). Genie then reads the pages directly from the volume.
+`claims_demo.knowledge.pages` and also stored as one row per page in the table
+`claims_demo.knowledge.knowledge_pages`, which is part of the Genie Agent.
 
-The Agent Bricks features (Knowledge Assistant, Supervisor Agent) are not enabled for this
-Databricks account, so they are not part of the demo.
+The better ways to give Genie the pages are blocked in this workspace: the Agent Bricks features
+(Knowledge Assistant, Supervisor Agent) answer "not available, please contact sales", and
+attaching the volume to the Genie Agent fails with `VOLUME_INDEX_FEATURE_PREVIEW_NOT_ENABLED`
+(Beta feature "Analyze Files in Volumes with Genie Agents").
+
+Open point: in chat mode Genie does not yet give a usable "why" from the table (see `TODO.md`).
 
 | Page | Content | Role in the story |
 |---|---|---|
@@ -189,7 +192,7 @@ itself, but from the data and knowledge behind it.
 | Failure case | Implementation in Databricks |
 |---|---|
 | Data is poor | Second schema `claims_demo.claims_poor_quality` with the same table `claims`, but without `closed_date` in 15% of the rows. |
-| Document is outdated | Second volume that only contains the old guideline (as of 2023, threshold €10,000), attached to a second Genie Agent. |
+| Document is outdated | Second schema with a table `knowledge_pages` that only contains the old guideline (as of 2023, threshold €10,000), used by a second Genie Agent. |
 | No permission | Second group without `SELECT` permission on `claims_demo.claims.claims`. |
 
 ## How it runs at the stand (approx. 5 minutes)

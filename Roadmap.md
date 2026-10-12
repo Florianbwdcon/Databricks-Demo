@@ -17,15 +17,16 @@ pages, and the answer names the source for both. After that we show three failur
 |---|---|---|---|
 | Tables | provide the numbers | `claims_demo.claims` | done |
 | Poor-quality copy | failure case "Data is poor" | `claims_demo.claims_poor_quality` | done |
-| Knowledge pages | provide the "why" | volume `claims_demo.knowledge.pages` | done |
-| Genie Agent | queries the claims tables and reads the pages from the volume | Genie | open |
+| Knowledge pages | provide the "why" | volume `claims_demo.knowledge.pages` and table `claims_demo.knowledge.knowledge_pages` | done |
+| Genie Agent | queries the claims tables and reads the pages from the table | Genie "Claims Genie" | numbers work, "why" open |
 
 Workspace: sandbox `adb-7405618085597765` (CLI profile `Florian`).
 
 The original plan was a Knowledge Assistant for the pages and a Supervisor Agent that connects
 it with Genie. Both are blocked for this Databricks account ("not available, please contact
-sales"), in the UI and in the API. Instead the volume is attached directly to the Genie Agent
-(Beta feature "Analyze Files in Volumes with Genie Agents").
+sales"), in the UI and in the API. Attaching the volume directly to the Genie Agent is blocked
+as well (`VOLUME_INDEX_FEATURE_PREVIEW_NOT_ENABLED`). So the pages are stored as a table that
+is part of the Genie Agent.
 
 ## Where we are
 
@@ -63,7 +64,8 @@ Phase 6  Housekeeping             open
   - Event Report Frost January 2026 (explains the peak in January)
   - Claims Handling Process (background)
 - Numbers in the pages checked against the sample data
-- Pages uploaded to the volume, repeatable through `setup/upload_knowledge.ps1`
+- Pages uploaded to the volume and stored as the table `claims_demo.knowledge.knowledge_pages`
+  (one row per page), repeatable through `setup/upload_knowledge.ps1`
 
 ### Around it
 
@@ -75,13 +77,16 @@ Phase 6  Housekeeping             open
 
 ### Phase 3: Genie space (next)
 
-Done: the Genie Agent "Claims Genie" exists with the four claims tables and the instructions
-(`setup/create_genie_agent.ps1`). It answers the numbers part of the main question correctly
-and names the table as the source. The "why" is still missing because the volume is not attached.
+Done: the Genie Agent "Claims Genie" exists with the four claims tables, the table
+`knowledge_pages` and the instructions (`setup/create_genie_agent.ps1`). It answers the numbers
+part of the main question correctly and names the table as the source.
 
-1. Turn on the preview "Analyze Files in Volumes with Genie Agents" on the Previews page
-2. Attach the volume `claims_demo.knowledge.pages` under Sources and check that Genie reads
-   the Markdown files
+Open: the "why". In chat mode Genie runs one query per question and apparently only reads the start of long
+texts, so it does not find the guideline in the page table. Three variants were tested through
+the API and none gave a usable answer (details in `TODO.md`).
+
+1. Try Agent mode in the Genie UI, which works in several steps
+2. If that does not help: split the pages into short sections, one row per section
 3. Test the main question and compare with "The good answer" in `Context.md`
 4. Test the follow-up question: "Why were there so many claims in January?"
 5. Check that a source is named for the numbers and for the explanation
@@ -89,7 +94,7 @@ and names the table as the source. The "why" is still missing because the volume
 ### Phase 4: Failure cases
 
 - "Document is outdated": write a page with the old guideline (valid from 1 July 2023,
-  threshold €10,000), put it in a second volume, second Genie Agent on top
+  threshold €10,000), store it in a second schema as `knowledge_pages`, second Genie Agent on top
 - "No permission": second group without `SELECT` on `claims_demo.claims.claims`
 - Test all three failure cases with the main question and note the answers
 
