@@ -155,16 +155,20 @@ Notes on the data:
 Every page has a small header at the top: **Title, As of (date), Owner, Valid from**.
 These are exactly the details Genie needs to name a source properly.
 
+Right below the header every page has a section "Summary" with a few sentences. Event reports
+have a fifth header field, **Event start**, the day the event began.
+
 How it is built: the pages are Markdown files in `knowledge/`. They are uploaded to the volume
 `claims_demo.knowledge.pages` and also stored as one row per page in the table
-`claims_demo.knowledge.knowledge_pages`, which is part of the Genie Agent.
+`claims_demo.knowledge.knowledge_pages`. The view `claims_demo.knowledge.knowledge_by_month`
+shows per month which pages took effect (guideline: valid from, event report: event start),
+with title, as of date and summary. Genie joins this view with the monthly numbers, so the
+explanation stands next to the month in which the numbers change.
 
 The better ways to give Genie the pages are blocked in this workspace: the Agent Bricks features
 (Knowledge Assistant, Supervisor Agent) answer "not available, please contact sales", and
 attaching the volume to the Genie Agent fails with `VOLUME_INDEX_FEATURE_PREVIEW_NOT_ENABLED`
 (Beta feature "Analyze Files in Volumes with Genie Agents").
-
-Open point: in chat mode Genie does not yet give a usable "why" from the table (see `TODO.md`).
 
 | Page | Content | Role in the story |
 |---|---|---|

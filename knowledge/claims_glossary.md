@@ -7,7 +7,12 @@
 | **Owner**      | Claims Data Office, Nordlicht Insurance |
 | **Valid from** | 1 January 2025                          |
 
+## Summary
+
 This glossary explains the terms used in the claims area of Nordlicht Insurance.
+Processing time is the number of days between the reported date and the closed date of a claim.
+Only closed claims count, and it is evaluated as the average per month of reporting.
+
 The definitions apply to the tables in `claims_demo.claims`.
 
 ## Key metric

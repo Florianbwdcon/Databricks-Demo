@@ -38,25 +38,30 @@ The folder `knowledge/` contains the pages of the Knowledge Hub as Markdown:
 | `event_report_frost_january_2026.md` | Event Report Frost January 2026 |
 | `claims_handling_process.md` | Claims Handling Process |
 
-Every page starts with a header: title, as of, owner, valid from.
+Every page starts with a header (title, as of, owner, valid from) and a section "Summary".
+Event reports also have the header field "Event start".
 
 Upload the pages to the volume `claims_demo.knowledge.pages` (creates schema and volume if needed)
-and rebuild the table `claims_demo.knowledge.knowledge_pages` from them:
+and rebuild the table `claims_demo.knowledge.knowledge_pages` and the view
+`claims_demo.knowledge.knowledge_by_month` from them:
 
 ```powershell
 .\setup\upload_knowledge.ps1
 ```
 
-The table has one row per page with the header fields (`title`, `as_of`, `owner`, `valid_from`)
-and the full text (`content`). Genie reads the pages from this table, because attaching a volume
-to a Genie Agent is not enabled in this workspace (`VOLUME_INDEX_FEATURE_PREVIEW_NOT_ENABLED`).
+The table has one row per page with the header fields (`title`, `as_of`, `owner`, `valid_from`),
+the summary and the full text. The view has one row per month in which a page took effect, with
+title, as of date and summary as a note. Genie joins the view with the monthly numbers to explain
+why they change. This replaces attaching the volume to the Genie Agent, which is not enabled in
+this workspace (`VOLUME_INDEX_FEATURE_PREVIEW_NOT_ENABLED`).
 
-Re-running overwrites the files in the volume and rebuilds the table.
+Re-running overwrites the files in the volume and rebuilds table and view.
 
 ## Genie Agent
 
 Create the Genie Agent "Claims Genie" with the four claims tables, the table `knowledge_pages`,
-the instructions and the definition of processing time:
+the view `knowledge_by_month`, the instructions, the definition of processing time and
+example queries for the two demo questions:
 
 ```powershell
 .\setup\create_genie_agent.ps1

@@ -9,6 +9,13 @@
 
 This guideline replaces the version valid from 1 July 2023.
 
+## Summary
+
+A new claims handling guideline for water damage has been in force since 1 March 2026.
+For water damage claims above €3,000, an assessor must inspect the damage before payout
+(before that the threshold was €10,000). This extends the processing of these claims by
+about two to three weeks.
+
 ## Purpose
 
 This guideline describes how water damage claims are handled at Nordlicht Insurance.

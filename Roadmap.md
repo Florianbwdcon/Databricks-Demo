@@ -17,8 +17,8 @@ pages, and the answer names the source for both. After that we show three failur
 |---|---|---|---|
 | Tables | provide the numbers | `claims_demo.claims` | done |
 | Poor-quality copy | failure case "Data is poor" | `claims_demo.claims_poor_quality` | done |
-| Knowledge pages | provide the "why" | volume `claims_demo.knowledge.pages` and table `claims_demo.knowledge.knowledge_pages` | done |
-| Genie Agent | queries the claims tables and reads the pages from the table | Genie "Claims Genie" | numbers work, "why" open |
+| Knowledge pages | provide the "why" | volume `claims_demo.knowledge.pages`, table `knowledge_pages` and view `knowledge_by_month` in `claims_demo.knowledge` | done |
+| Genie Agent | queries the claims tables and reads the pages from the table | Genie "Claims Genie" | done, UI test open |
 
 Workspace: sandbox `adb-7405618085597765` (CLI profile `Florian`).
 
@@ -31,14 +31,14 @@ is part of the Genie Agent.
 ## Where we are
 
 The data side and the knowledge side are finished and live in Databricks.
-Everything that turns them into an answer is still missing: the Genie space, two of the
-three failure cases and the material for the stand.
+The Genie Agent gives the good answer. Still missing: two of the three failure cases and
+the material for the stand.
 
 ```
 Phase 1  Storyline and data       done
 Phase 2  Knowledge Hub            done
-Phase 3  Genie space              next
-Phase 4  Failure cases            1 of 3 done
+Phase 3  Genie Agent              done, UI test open
+Phase 4  Failure cases            next, 1 of 3 done
 Phase 5  Stand                    open
 Phase 6  Housekeeping             open
 ```
@@ -75,21 +75,21 @@ Phase 6  Housekeeping             open
 
 ## What is left to do
 
-### Phase 3: Genie space (next)
+### Phase 3: Genie Agent (nearly done)
 
 Done: the Genie Agent "Claims Genie" exists with the four claims tables, the table
-`knowledge_pages` and the instructions (`setup/create_genie_agent.ps1`). It answers the numbers
-part of the main question correctly and names the table as the source.
+`knowledge_pages`, the view `knowledge_by_month` and the instructions
+(`setup/create_genie_agent.ps1`). Tested through the API, it gives the good answer:
 
-Open: the "why". In chat mode Genie runs one query per question and apparently only reads the start of long
-texts, so it does not find the guideline in the page table. Three variants were tested through
-the API and none gave a usable answer (details in `TODO.md`).
+- Main question: processing time rises from 17-18 days at the end of 2025 to 30-31 days in
+  summer 2026, the increase from March 2026 is explained with the new guideline, and the
+  table and the page with its as of date are named as sources.
+- Follow-up question: 96 water damage claims in January, explained with the frost report.
 
-1. Try Agent mode in the Genie UI, which works in several steps
-2. If that does not help: split the pages into short sections, one row per section
-3. Test the main question and compare with "The good answer" in `Context.md`
-4. Test the follow-up question: "Why were there so many claims in January?"
-5. Check that a source is named for the numbers and for the explanation
+How it works: Genie runs one query per question. The view puts the summary of a page next to
+the month in which it took effect, and Genie joins it with the monthly numbers.
+
+Open: test both questions in the Genie UI and check how table and answer look on screen.
 
 ### Phase 4: Failure cases
 

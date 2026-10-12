@@ -5,10 +5,14 @@
 | **Title** | Claims Handling Process |
 | **As of** | 1 March 2026 |
 | **Owner** | Claims Operations, Nordlicht Insurance |
-| **Valid from** | 1 March 2026 |
+| **Valid from** | 1 January 2025 |
+
+## Summary
 
 This page describes in simple words what happens between the moment a customer reports
-a claim and the moment the claim is closed.
+a claim and the moment the claim is closed: report, check cover, estimate, inspect,
+decide, pay out, close. It also says when an assessor is required and how long each
+damage type typically takes.
 
 ## The steps
 

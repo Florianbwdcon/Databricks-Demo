@@ -6,11 +6,14 @@
 | **As of** | 6 February 2026 |
 | **Owner** | Claims Operations, Nordlicht Insurance |
 | **Valid from** | 6 February 2026 |
+| **Event start** | 8 January 2026 |
 
 ## Summary
 
-A frost period from 8 to 19 January 2026 caused an unusually high number of water damage claims.
-In January 2026, 96 water damage claims were reported. A normal month has around 40.
+A frost period from 8 to 19 January 2026 caused many burst pipes, mainly in the north, and
+an unusually high number of water damage claims. In January 2026, 96 water damage claims
+were reported. A normal month has around 40. Because of the high volume, claims reported
+in January took a few days longer than usual.
 
 ## What happened
 
