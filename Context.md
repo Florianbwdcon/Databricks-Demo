@@ -36,12 +36,12 @@ employees both know.
 
 ## The 4 steps
 
-| Step | What happens | Who helps |
-|---|---|---|
-| 1. Question | Petra asks Genie in plain language. | Genie |
-| 2. Fetch numbers | Genie finds the right table, checks whether Petra may see it, and calculates the processing time per month. | Data Management (Databricks Catalog) |
-| 3. Find explanation | Genie reads the knowledge pages and finds what explains the trend: a new claims handling guideline since March. | Knowledge Hub (Databricks Pages) |
-| 4. Answer | Genie shows numbers and explanation and names the source for both. | both |
+| Step                | What happens                                                                                                    | Who helps                            |
+| ------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| 1. Question         | Petra asks Genie in plain language.                                                                             | Genie                                |
+| 2. Fetch numbers    | Genie finds the right table, checks whether Petra may see it, and calculates the processing time per month.     | Data Management (Databricks Catalog) |
+| 3. Find explanation | Genie reads the knowledge pages and finds what explains the trend: a new claims handling guideline since March. | Knowledge Hub (Databricks Pages)     |
+| 4. Answer           | Genie shows numbers and explanation and names the source for both.                                              | both                                 |
 
 ## The good answer
 
@@ -63,13 +63,13 @@ Catalog `claims_demo`, schema `claims`. Four tables, deliberately kept small.
 
 ### `customers`
 
-| Column | Type | Meaning |
-|---|---|---|
-| `customer_id` | STRING | Customer number (key) |
-| `first_name` | STRING | First name (personal data) |
-| `last_name` | STRING | Last name (personal data) |
-| `postal_code` | STRING | Postal code |
-| `city` | STRING | City |
+| Column        | Type   | Meaning                    |
+| ------------- | ------ | -------------------------- |
+| `customer_id` | STRING | Customer number (key)      |
+| `first_name`  | STRING | First name (personal data) |
+| `last_name`   | STRING | Last name (personal data)  |
+| `postal_code` | STRING | Postal code                |
+| `city`        | STRING | City                       |
 
 ### `policies`
 
@@ -186,7 +186,7 @@ Visitors pick one of three cards:
 |---|---|---|
 | Data is poor | The closed date is missing for 15% of claims, mainly the long ones. | Genie reports 24 instead of 30 days. The number is wrong, or Genie warns about gaps. |
 | Document is outdated | The new guideline was never filed. The Knowledge Hub only contains the old version from 2023. | Genie sees the increase but finds no explanation, or a wrong one. |
-| No permission | Petra is not allowed to see the claims table. | Genie declines cleanly instead of guessing. |
+| No permission | Petra is not allowed to see the claims table. | Genie shows a warning that the permission is missing and does not let Petra ask the question at all. It declines cleanly instead of guessing. |
 
 Visitors immediately see the answer get worse and understand: quality does not come from the AI
 itself, but from the data and knowledge behind it.
@@ -197,7 +197,7 @@ itself, but from the data and knowledge behind it.
 |---|---|
 | Data is poor | Second schema `claims_demo.claims_poor_quality` with the same table `claims`, but without `closed_date` in 15% of the rows. |
 | Document is outdated | Second schema with a table `knowledge_pages` that only contains the old guideline (as of 2023, threshold €10,000), used by a second Genie Agent. |
-| No permission | Second group without `SELECT` permission on `claims_demo.claims.claims`. |
+| No permission | Second user without `SELECT` permission on `claims_demo.claims.claims`, who opens the same Genie Agent. |
 
 ## How it runs at the stand (approx. 5 minutes)
 
