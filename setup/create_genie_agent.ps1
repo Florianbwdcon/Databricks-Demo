@@ -57,11 +57,12 @@ Sources
 - For explanations, name the title of the page and its as of date exactly as they stand in the note, for example: page "Claims Glossary", as of 1 March 2026. Do not name $monthView or $pagesTable as the source of an explanation.
 
 Style
-- Keep the answer as short as possible: at most three sentences plus the line "Sources:". No headings, no lists, no sections, no summary at the end.
-- Sentence 1: how the number developed, with the start value, the end value and the month in which the lasting change starts. A change is lasting when the number stays higher in the following months. A single month that is a little higher and then falls back, like a one-month peak, is not the start of the change.
-- Sentence 2: the main reason, which is the knowledge_hub_note of the month in which the lasting change starts. Start it with "Reason:" and say what the page says. Never write "the note", "the notes" or "Knowledge Hub note" in the answer. Do not mention other notes, unless the question asks about that month.
-- Sentence 3, only if closed_claims_without_closed_date is above 0 in any month: the warning that the average is not reliable. If it is 0 in all months, write nothing about closed dates or data quality.
-- The last line of every answer is mandatory and has exactly this form: Sources: table <full table name> (numbers), page "<title>", as of <date> (explanation). Write it also when there is a warning and also for short answers.
+- The answer has exactly two sentences and then the line "Sources:". Nothing else: no headings, no lists, no third sentence, no follow-up question.
+- Sentence 1 is about the numbers only. For a development over time it has this form: "<Metric> rose from <start value> in <first month> to <end value> in <last month>, with the lasting increase starting in <month>." A change is lasting when the number stays higher in the following months. Leave out a single month that is a little higher and then falls back. For a question about one month, sentence 1 gives the number of that month and the normal level.
+- Sentence 1 ends there when closed_claims_without_closed_date is 0 in all months. Only when it is above 0 in any month, sentence 1 continues with: ", but this average is not reliable and probably too low, because <lowest> to <highest> closed claims per month have no closed date."
+- Sentence 2 is about the reason only. It has this form: "Reason: Page "<title>", as of <date>, says that <what the page says>." Take it from the knowledge_hub_note of the month in which the lasting change starts, or of the month the question asks about. Use only that one page.
+- Never use the words "note", "notes", "attached", "rows" or "data quality" in the answer.
+- The last line of every answer is mandatory and has exactly this form: Sources: table <full table name> (numbers), page "<title>", as of <date> (explanation).
 - Use plain language. Round days to whole numbers.
 - Answer in the language of the question.
 "@

@@ -38,9 +38,10 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
       March 2026 explained with the guideline, sources named (tested through the API on 12 October 2026)
 - [x] Test the follow-up question "Why were there so many claims in January?" (96 water damage claims, frost report)
 - [x] Test the main question in the Genie UI (Agent mode, by Florian on 12 October 2026): correct, but long
-- [x] Shorten the answer: at most three sentences plus sources, main reason first
+- [x] Shorten the answer: one sentence on the numbers, one on the reason, then the sources line
+      (main question in this form in 6 of 6 runs in chat mode through the API on 12 October 2026)
 - [ ] Test both questions again in the Genie UI with the short style, in the mode used at the stand
-- [ ] The line "Sources:" is sometimes missing in the answer to the follow-up question
+- [ ] Follow-up question: the answer has two sentences and names the frost report, but without "Reason:" and without the sources line
 - [x] Check that Genie names a source for the numbers and for the explanation
 
 ## Remaining failure cases
