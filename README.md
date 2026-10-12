@@ -26,3 +26,17 @@ Re-running drops and rebuilds the tables.
 
 The SQL files can also be run one after the other in the Databricks SQL editor with the
 target catalog selected.
+
+## Knowledge Hub
+
+The folder `knowledge/` contains the pages of the Knowledge Hub as Markdown:
+
+| File | Page |
+|---|---|
+| `claims_handling_guideline_water_damage.md` | Claims Handling Guideline Water Damage |
+| `claims_glossary.md` | Claims Glossary |
+| `event_report_frost_january_2026.md` | Event Report Frost January 2026 |
+| `claims_handling_process.md` | Claims Handling Process |
+
+Every page starts with a header: title, as of, owner, valid from.
+The pages are not uploaded to Databricks yet (see `TODO.md`).
