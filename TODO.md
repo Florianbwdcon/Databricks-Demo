@@ -56,7 +56,8 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
 - [ ] The sources line is cut off or missing in some runs, and the start month was April instead of March once
 - [x] "No permission": second user without `SELECT` on `claims_demo.claims.claims`, set up by
       `setup/create_no_access_user.ps1` (granted directly to the user, without a group)
-- [ ] "No permission": log in as this user, ask "Claims Genie" the main question and note the answer
+- [x] "No permission" tested in the Genie UI by Florian on 12 October 2026. Genie shows: "Warning: You don't
+      have SELECT access on 'claims_demo.claims.claims'. Please work with the Genie agent owner to gain access."
 - [ ] Test all three failure cases with the main question and note Genie's answers
 
 ## At the stand

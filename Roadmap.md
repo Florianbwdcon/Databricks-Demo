@@ -38,7 +38,7 @@ the material for the stand.
 Phase 1  Storyline and data       done
 Phase 2  Knowledge Hub            done
 Phase 3  Genie Agent              done, UI test open
-Phase 4  Failure cases            2 of 3 done and tested
+Phase 4  Failure cases            done, 3 of 3 tested
 Phase 5  Stand                    open
 Phase 6  Housekeeping             open
 ```
@@ -102,9 +102,9 @@ Done: "Document is outdated". The folder `knowledge_outdated/` only holds the ol
 (outdated document)" reports the same numbers as the good agent and says that the Knowledge Hub
 contains no explanation for the change.
 
-Set up, not yet tested: "No permission". A second user may use the warehouse and the agent
-"Claims Genie" and read all its tables except `claims_demo.claims.claims`
-(`setup/create_no_access_user.ps1`). Open: log in as this user and ask the main question.
+Done: "No permission". A second user may use the warehouse and the agent "Claims Genie" and read
+all its tables except `claims_demo.claims.claims` (`setup/create_no_access_user.ps1`). Genie shows
+the warning "You don't have SELECT access on 'claims_demo.claims.claims'" and does not guess.
 
 - Test all three failure cases with the main question and note the answers
 
