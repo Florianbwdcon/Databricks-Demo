@@ -102,7 +102,10 @@ Done: "Document is outdated". The folder `knowledge_outdated/` only holds the ol
 (outdated document)" reports the same numbers as the good agent and says that the Knowledge Hub
 contains no explanation for the change.
 
-- "No permission": second group without `SELECT` on `claims_demo.claims.claims`
+Set up, not yet tested: "No permission". A second user may use the warehouse and the agent
+"Claims Genie" and read all its tables except `claims_demo.claims.claims`
+(`setup/create_no_access_user.ps1`). Open: log in as this user and ask the main question.
+
 - Test all three failure cases with the main question and note the answers
 
 ### Phase 5: Stand

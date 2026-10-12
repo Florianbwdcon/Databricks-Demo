@@ -85,3 +85,15 @@ the agent on it:
 ```
 
 After a change to the instructions in `create_genie_agent.ps1`, run all three calls again.
+
+## User without permission
+
+The failure case "No permission" needs a second user who asks the agent "Claims Genie" but may
+not read the table `claims_demo.claims.claims`. Create the user account in Microsoft Entra ID,
+then add it to the workspace and set its permissions:
+
+```powershell
+.\setup\create_no_access_user.ps1 -UserName demo.noaccess@example.onmicrosoft.com
+```
+
+The user may use the warehouse and the agent and may read all other tables of the agent.

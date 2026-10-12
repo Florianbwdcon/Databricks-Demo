@@ -54,7 +54,9 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
       document)". Tested through the API on 12 October 2026: same numbers as the good agent, and
       "Reason: The Knowledge Hub contains no explanation for this change."
 - [ ] The sources line is cut off or missing in some runs, and the start month was April instead of March once
-- [ ] "No permission": second group without `SELECT` permission on `claims_demo.claims.claims`
+- [x] "No permission": second user without `SELECT` on `claims_demo.claims.claims`, set up by
+      `setup/create_no_access_user.ps1` (granted directly to the user, without a group)
+- [ ] "No permission": log in as this user, ask "Claims Genie" the main question and note the answer
 - [ ] Test all three failure cases with the main question and note Genie's answers
 
 ## At the stand
