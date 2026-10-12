@@ -21,22 +21,26 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
 - [x] Write the page "Claims Handling Process"
 - [x] Give every page the header: title, as of, owner, valid from
 - [x] Upload the pages to the Knowledge Hub
-- [x] Store the pages as the table `claims_demo.knowledge.knowledge_pages` for Genie
+- [x] Store the pages as the table `claims_demo.knowledge.knowledge_pages` as a fallback
       (Knowledge Assistant and Supervisor Agent are not enabled for this account: "contact sales")
 
 ## Genie
 
-- [ ] Create the Genie space with the four claims tables and `knowledge.knowledge_pages`
+- [ ] Turn on the preview "Analyze Files in Volumes with Genie Agents" (Previews page, workspace admin)
+- [ ] Create the Genie Agent with the four claims tables
+- [ ] Attach the volume `claims_demo.knowledge.pages` under Sources, with a description of the pages
+- [ ] Check that Genie reads the Markdown files (the documentation lists PDF, Word, slides and images)
 - [ ] Add instructions and the definition of "processing time"
-- [ ] Instruct Genie to read the explanation from `knowledge_pages` and to name title and "as of" date as the source
+- [ ] Instruct Genie to name the page title and "as of" date as the source of the explanation
+- [ ] Drop the fallback table `knowledge_pages` once reading from the volume works
 - [ ] Test the main question and compare with "The good answer" in `Context.md`
 - [ ] Test the follow-up question "Why were there so many claims in January?"
 - [ ] Check that Genie names a source for the numbers and for the explanation
 
 ## Remaining failure cases
 
-- [ ] "Document is outdated": second schema with a `knowledge_pages` table that only holds the old guideline
-      (valid from 1 July 2023, threshold 10,000 euros) and a second Genie space on it
+- [ ] "Document is outdated": second volume that only holds the old guideline
+      (valid from 1 July 2023, threshold 10,000 euros) and a second Genie Agent on it
 - [ ] "No permission": second group without `SELECT` permission on `claims_demo.claims.claims`
 - [ ] Test all three failure cases with the main question and note Genie's answers
 

@@ -1,5 +1,6 @@
 # Uploads the Knowledge Hub pages from the folder knowledge/ to a volume in Databricks
-# and rebuilds the table knowledge_pages from them, so that Genie can read the pages.
+# and rebuilds the table knowledge_pages from them. Genie reads the pages from the volume;
+# the table is a fallback in case that does not work well enough.
 # Creates the schema and the volume if they do not exist. Existing files are overwritten.
 #
 # Usage:   .\setup\upload_knowledge.ps1
@@ -57,7 +58,7 @@ foreach ($file in Get-ChildItem -Path $pages -Filter '*.md' | Sort-Object Name) 
     if ($LASTEXITCODE -ne 0) { throw "Could not upload $($file.Name)." }
 }
 
-# Genie only reads tables, so the pages are also stored as one row per page.
+# Fallback for Genie: the pages are also stored as one row per page.
 # The header fields are read from the header table at the top of every page.
 $warehouse = (databricks warehouses list --output json | Out-String) | ConvertFrom-Json |
     Where-Object { $_.name -eq $WarehouseName }

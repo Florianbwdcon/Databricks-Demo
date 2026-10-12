@@ -47,8 +47,11 @@ and rebuild the table `claims_demo.knowledge.knowledge_pages` from them:
 .\setup\upload_knowledge.ps1
 ```
 
-The table has one row per page with the header fields (`title`, `as_of`, `owner`, `valid_from`)
-and the full text (`content`). Genie reads the explanation from this table, because Genie only
-reads tables and the Agent Bricks features are not enabled for this Databricks account.
+The volume is attached to the Genie Agent as a source, so that Genie reads the pages directly
+(Beta feature "Analyze Files in Volumes with Genie Agents", turned on on the Previews page).
+
+The table is a fallback in case reading from the volume does not work well enough. It has one
+row per page with the header fields (`title`, `as_of`, `owner`, `valid_from`) and the full
+text (`content`).
 
 Re-running overwrites the files in the volume and rebuilds the table.

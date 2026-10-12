@@ -17,15 +17,16 @@ pages, and the answer names the source for both. After that we show three failur
 |---|---|---|---|
 | Tables | provide the numbers | `claims_demo.claims` | done |
 | Poor-quality copy | failure case "Data is poor" | `claims_demo.claims_poor_quality` | done |
-| Knowledge pages | provide the "why" | volume `claims_demo.knowledge.pages` and table `claims_demo.knowledge.knowledge_pages` | done |
-| Genie space | queries the claims tables and reads the knowledge pages | Genie | open |
+| Knowledge pages | provide the "why" | volume `claims_demo.knowledge.pages` | done |
+| Fallback table | the same pages as rows, in case the volume does not work well enough | `claims_demo.knowledge.knowledge_pages` | done |
+| Genie Agent | queries the claims tables and reads the pages from the volume | Genie | open |
 
 Workspace: sandbox `adb-7405618085597765` (CLI profile `Florian`).
 
 The original plan was a Knowledge Assistant for the pages and a Supervisor Agent that connects
 it with Genie. Both are blocked for this Databricks account ("not available, please contact
-sales"), in the UI and in the API. Instead the pages are stored as a table and Genie reads
-the explanation from there.
+sales"), in the UI and in the API. Instead the volume is attached directly to the Genie Agent
+(Beta feature "Analyze Files in Volumes with Genie Agents").
 
 ## Where we are
 
@@ -76,17 +77,21 @@ Phase 6  Housekeeping             open
 
 ### Phase 3: Genie space (next)
 
-1. Create a **Genie space** with the four claims tables and `knowledge.knowledge_pages`
-2. Add instructions: the definition of processing time, and that the explanation comes from
-   `knowledge_pages` with title and "as of" date as the source
-3. Test the main question and compare with "The good answer" in `Context.md`
-4. Test the follow-up question: "Why were there so many claims in January?"
-5. Check that a source is named for the numbers and for the explanation
+1. Turn on the preview "Analyze Files in Volumes with Genie Agents" on the Previews page
+2. Create a **Genie Agent** with the four claims tables
+3. Attach the volume `claims_demo.knowledge.pages` under Sources and check that Genie reads
+   the Markdown files
+4. Add instructions: the definition of processing time, and that the explanation is named
+   with page title and "as of" date as the source
+5. Test the main question and compare with "The good answer" in `Context.md`
+6. Test the follow-up question: "Why were there so many claims in January?"
+7. Check that a source is named for the numbers and for the explanation
+8. Drop the fallback table once reading from the volume works
 
 ### Phase 4: Failure cases
 
 - "Document is outdated": write a page with the old guideline (valid from 1 July 2023,
-  threshold €10,000), store it in a second schema as `knowledge_pages`, second Genie space on top
+  threshold €10,000), put it in a second volume, second Genie Agent on top
 - "No permission": second group without `SELECT` on `claims_demo.claims.claims`
 - Test all three failure cases with the main question and note the answers
 
