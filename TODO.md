@@ -47,8 +47,9 @@ Status of the demo described in `Context.md`. Tick an item off when it is done.
 ## Remaining failure cases
 
 - [x] "Data is poor": Genie Agent "Claims Genie (poor data)" on `claims_poor_quality.claims`. Tested through the
-      API on 12 October 2026: 21 to 26 days from March 2026 instead of 24 to 31, and Genie warns that
-      2 to 17 closed claims per month have no closed date and the average is probably too low
+      API on 13 October 2026: 21 to 26 days from March 2026 instead of 24 to 31, and Genie warns that
+      2 to 17 closed claims per month have the closed date 1 January 1900, which is before the reported
+      date, and that the average is probably too low
 - [x] "Document is outdated": folder `knowledge_outdated/` with the old guideline (valid from 1 July 2023,
       threshold 10,000 euros), schema `claims_demo.knowledge_outdated`, Genie Agent "Claims Genie (outdated
       document)". Tested through the API on 12 October 2026: same numbers as the good agent, and

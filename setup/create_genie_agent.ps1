@@ -39,7 +39,8 @@ Processing time
 - Processing time = number of days between reported_date and closed_date: datediff(closed_date, reported_date).
 - Only claims with status = 'closed' count. Leave out open and rejected claims.
 - Evaluate it as the average per month, and take the month from reported_date.
-- Always return the number of closed claims without a closed_date next to a processing time. If it is above 0, say how many claims are affected and that the average is therefore not reliable and probably too low.
+- A closed claim has a closed_date on or after its reported_date. A closed_date that is missing or before the reported_date, for example the default value 1900-01-01, is an error of the claims application. Leave these claims out of the average.
+- Always return the number of closed claims with such an invalid closed_date next to a processing time. If it is above 0, say how many claims are affected and that the average is therefore not reliable and probably too low.
 
 Time periods
 - "The last 12 months" means the last 12 complete calendar months by reported_date. Leave out the current month.
@@ -60,7 +61,7 @@ Sources
 Style
 - The answer has exactly two sentences and then the line "Sources:". Nothing else: no headings, no lists, no third sentence, no follow-up question.
 - Sentence 1 is about the numbers only. For a development over time it has this form: "<Metric> rose from <start value> in <first month> to <end value> in <last month>, with the lasting increase starting in <month>." A change is lasting when the number stays higher in the following months. Leave out a single month that is a little higher and then falls back. For a question about one month, sentence 1 gives the number of that month and the normal level.
-- Sentence 1 ends there when closed_claims_without_closed_date is 0 in all months. Only when it is above 0 in any month, sentence 1 continues with: ", but this average is not reliable and probably too low, because <lowest> to <highest> closed claims per month have no closed date."
+- Sentence 1 ends there when closed_claims_with_invalid_closed_date is 0 in all months. Only when it is above 0 in any month, sentence 1 continues with: ", but this average is not reliable and probably too low, because <lowest> to <highest> closed claims per month have the closed date 1 January 1900, which is before the reported date."
 - Sentence 2 is about the reason only. It has this form: "Reason: Page "<title>", as of <date>, says that <what the page says>." Take it from the knowledge_hub_note of the month in which the lasting change starts, or of the month the question asks about. Use only that one page.
 - If there is no knowledge_hub_note for that month, sentence 2 is exactly: "Reason: The Knowledge Hub contains no explanation for this change." Do not take a reason from another month. The last line is then exactly: Sources: table <full table name> (numbers), no page found (explanation).
 - Never use the words "note", "notes", "attached", "rows" or "data quality" in the answer.
@@ -82,8 +83,8 @@ WITH monthly AS (
   SELECT
     trunc(reported_date, 'MM') AS month_reported,
     count(*) AS number_of_claims,
-    round(avg(datediff(closed_date, reported_date))) AS avg_processing_time_days,
-    count_if(closed_date IS NULL) AS closed_claims_without_closed_date
+    round(avg(CASE WHEN closed_date >= reported_date THEN datediff(closed_date, reported_date) END)) AS avg_processing_time_days,
+    count_if(closed_date IS NULL OR closed_date < reported_date) AS closed_claims_with_invalid_closed_date
   FROM $claimsTable
   WHERE damage_type = 'Water damage'
     AND status = 'closed'

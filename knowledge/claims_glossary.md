@@ -26,9 +26,11 @@ The number of days between the reported date and the closed date of a claim.
 - The standard evaluation is the average per month, and the month is taken from the reported date.
 - Source table: `claims_demo.claims.claims`.
 
-Note: if the closed date is missing for claims that are in fact closed, the average comes out
-too low, because long-running claims are the ones most often affected. Check for gaps in
-`closed_date` before trusting the number.
+Note: a closed claim has a closed date on or after its reported date. A closed date that is
+missing or before the reported date is an error. The claims application writes the default
+value 1 January 1900 when the real closed date was not stored. Leave these claims out of the
+average. The average then comes out too low, because long-running claims are the ones most often
+affected. Check `closed_date` for such values before trusting the number.
 
 ## Dates
 

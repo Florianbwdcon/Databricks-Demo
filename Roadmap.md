@@ -95,7 +95,8 @@ Open: test both questions in the Genie UI and check how table and answer look on
 
 Done: "Data is poor". The Genie Agent "Claims Genie (poor data)" uses `claims_poor_quality.claims`.
 It reports 21 to 26 days from March 2026 instead of 24 to 31 and warns that closed claims
-without a closed date make the average unreliable.
+with the closed date 1 January 1900 make the average unreliable. The default value replaces the
+empty closed date used before, which visitors read as "claim not finished yet".
 
 Done: "Document is outdated". The folder `knowledge_outdated/` only holds the old guideline from
 2023, stored in the schema `claims_demo.knowledge_outdated`. The Genie Agent "Claims Genie
